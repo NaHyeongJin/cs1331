@@ -8,7 +8,7 @@ public enum VendingItem {
     private final double price; // 항목의 가격 생성자에서 초기화
 
     // 가격 매개변수로 받는 생성자
-    VendingItem(double price) {
+    private VendingItem(double price) {
         this.price = price;
     }
 
