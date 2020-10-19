@@ -15,7 +15,15 @@ public abstract class AI {
     // selfDestruct () 메서드를 호출 한 다음 return false
     // 그 외에는 전부 return false
     public boolean swapCannonTarget(Coordinates newCoords) {
-        return false;
+        if (!destructed && !newCoords.equals(cannonTarget)) {
+            cannonTarget = (shouldSwapCannonTarget()) ? newCoords : cannonTarget;
+            return true;
+        } else if (shouldSelfDestruct()) {
+            selfDestruct();
+            return false;
+        } else {
+            return false;
+        }
     }
 
     public abstract boolean shouldSwapCannonTarget();
@@ -26,10 +34,16 @@ public abstract class AI {
 
     }
 
+    public abstract boolean shouldSelfDestruct();
+
     // "Dr. Chipotle’s guacamole cannon is currently pointed at (cannonTarget)."
     // for exam "Dr. Chipotle's guacamole cannon is currently pointed at latitude:
     // 13.31, longitude: 13.01."
     public String toString() {
-        return "Dr. Chipotle's guacamole cannon is currently pointed at " + cannonTarget + ".";
+        return "Dr. Chipotle's guacamole cannon is currently pointed at " + cannonTarget;
+    }
+
+    public boolean getDestructed() {
+        return destructed;
     }
 }

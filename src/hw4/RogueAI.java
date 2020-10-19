@@ -34,31 +34,30 @@ public class RogueAI extends AI {
     public RogueAI(int firewallProtection, Coordinates cannonTarget, Coordinates secretHQ) {
         this(firewallProtection, 0, 10, cannonTarget, secretHQ);
     }
+
+    // 얘는 firewallProtection을 줄여야 함
+    // alertLevel++;
+    public void lowerFirewall() {
+        firewallProtection -= 2;
+        alertLevel++;
+    }
+
+    public boolean shouldSwapCannonTarget() {
+        return (firewallProtection <= 0);
+    }
+
+    @Override
+    public boolean shouldSelfDestruct() {
+        return (alertLevel >= maxAlert);
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + ", and is at alert level " + alertLevel + " with firewall protection "
+                + firewallProtection;
+    }
+
+    public int getFirewallProtection() {
+        return firewallProtection;
+    }
 }
-
-// Methods
-// This class has the following methods alongside the getters specified in the
-// Fields section:
-
-// public void lowerFirewall(). This method should decrement firewallProtection
-// by 2, and increment alertLevel by 1 when invoked.
-
-// public boolean shouldSwapCannonTarget(). This method should override the
-// abstract method found in AI.java. It should return whether or not
-// firewallProtection is less than or equal to 0.
-
-// public boolean shouldSelfDestruct(). This method should override the abstract
-// method found in AI.java. It should return whether or not alertLevel is
-// greater than or equal to maxAlert.
-
-// public String toString(). This method returns the String representation of
-// the RogueAI’s fields in the following format:
-
-// "Dr. Chipotle’s guacamole cannon is currently pointed at (cannonTarget), and
-// is at alert level (alertLevel) with firewall protection
-// (firewallProtection)." Properly reuse code here or you could lose points
-
-// For example, a possible output of the toString() method could look like this:
-
-// "Dr. Chipotle's guacamole cannon is currently pointed at latitude: 13.31,
-// longitude: 13.01, and is at alert level 10 with firewall protection 5."
