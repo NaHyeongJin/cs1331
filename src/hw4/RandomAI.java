@@ -19,12 +19,13 @@ public class RandomAI extends AI {
     // 얘는 50퍼 확률로 true 반환
     @Override
     public boolean shouldSwapCannonTarget() {
-        // TODO Auto-generated method stub
+        if (randomizer.nextInt(100) < 50)
+            return true;
         return false;
     }
 
     // 얘도 50퍼 확률로 true 반환
     public boolean shouldSelfDestruct() {
-        return false;
+        return shouldSwapCannonTarget();
     }
 }

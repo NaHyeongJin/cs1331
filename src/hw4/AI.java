@@ -31,7 +31,7 @@ public abstract class AI {
     // 얘는 destructed에 대한 setter로 작동하지만
     // 호출 될 때마다 destruceted를 true로 설정함
     public void selfDestruct() {
-
+        destructed = true;
     }
 
     public abstract boolean shouldSelfDestruct();
