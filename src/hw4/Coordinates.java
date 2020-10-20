@@ -15,13 +15,15 @@ public class Coordinates {
     // 위도 경도 같아야 true
     @Override
     public boolean equals(Object other) {
-        Coordinates obj;
-        if (other instanceof Coordinates) {
-            obj = (Coordinates) other;
-        } else {
+        if (this == other)
+            return true;
+        if (other == null || getClass() != other.getClass())
             return false;
-        }
-        return (obj.latitude == this.latitude && obj.longitude == this.longitude);
+        Coordinates obj = (Coordinates) other;
+
+        if (latitude != obj.latitude || longitude != obj.longitude)
+            return false;
+        return true;
     }
 
     @Override
