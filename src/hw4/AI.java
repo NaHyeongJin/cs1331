@@ -1,9 +1,9 @@
 package hw4;
 
 public abstract class AI {
-    boolean destructed = false;
-    Coordinates cannonTarget;
-    Coordinates secretHQ;
+    private boolean destructed = false;
+    protected Coordinates cannonTarget;
+    protected Coordinates secretHQ;
 
     // 얘는 cannonTarget 변수 변경을 시도함
     // 그 다음 cannonTarget이 변경되었는지 확인함
@@ -45,5 +45,9 @@ public abstract class AI {
 
     public boolean getDestructed() {
         return destructed;
+    }
+
+    public Coordinates getSecretHQ() {
+        return secretHQ;
     }
 }

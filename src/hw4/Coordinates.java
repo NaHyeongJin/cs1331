@@ -4,8 +4,8 @@ package hw4;
  * Coordinates
  */
 public class Coordinates {
-    final double latitude; // 좌표 집합의 위도
-    final double longitude; // 좌표 집합의 경도
+    private final double latitude; // 좌표 집합의 위도
+    private final double longitude; // 좌표 집합의 경도
 
     public Coordinates(double latitude, double longitude) {
         this.latitude = latitude;

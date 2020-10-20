@@ -2,10 +2,10 @@ package hw4;
 
 // 얘가 히어로인듯
 public class DoctorCS {
-    AI ai;
+    protected AI ai;
     final private String secretldentity;
     final public int jlaid; // DoctorCS
-    boolean safe;
+    protected boolean safe;
 
     public DoctorCS(AI ai, String secretIdentity, int jlaid) {
         this.ai = ai;
@@ -26,10 +26,10 @@ public class DoctorCS {
             while (newAI.getFirewallProtection() > 0) {
                 newAI.lowerFirewall();
             }
-            safe = newAI.swapCannonTarget(newAI.secretHQ);
+            safe = newAI.swapCannonTarget(newAI.getSecretHQ());
         } else {
             RandomAI newAI = (RandomAI) ai;
-            safe = newAI.swapCannonTarget(newAI.secretHQ);
+            safe = newAI.swapCannonTarget(newAI.getSecretHQ());
         }
     }
 
@@ -39,7 +39,7 @@ public class DoctorCS {
     // 둘 다 아니면 “Georgia Tech is still in danger!”
     public String getStatus() {
         return (safe) ? "Doctor CS has saved the day!"
-                : (ai.destructed) ? "Dr. Chipotle has succeeded in his plan…" : "Georgia Tech is still in danger!";
+                : (ai.getDestructed()) ? "Dr. Chipotle has succeeded in his plan…" : "Georgia Tech is still in danger!";
     }
 
     // "(secretIdentity) aka Doctor CS with JLAID: (jlaid)"

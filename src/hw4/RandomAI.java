@@ -12,8 +12,8 @@ public class RandomAI extends AI {
     Random randomizer = new Random(); // 얘가 확률결정
 
     public RandomAI(Coordinates cannonTarget, Coordinates secretHQ) {
-        super.cannonTarget = cannonTarget;
-        super.secretHQ = secretHQ;
+        this.cannonTarget = cannonTarget;
+        this.secretHQ = secretHQ;
     }
 
     // 얘는 50퍼 확률로 true 반환
