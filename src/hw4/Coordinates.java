@@ -21,7 +21,7 @@ public class Coordinates {
         } else {
             return false;
         }
-        return (obj.latitude == this.latitude && obj.longitude == this.longitude) ? true : false;
+        return (obj.latitude == this.latitude && obj.longitude == this.longitude);
     }
 
     @Override
