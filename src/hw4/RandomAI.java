@@ -19,13 +19,17 @@ public class RandomAI extends AI {
     // 얘는 50퍼 확률로 true 반환
     @Override
     public boolean shouldSwapCannonTarget() {
-        if (randomizer.nextInt(100) < 50)
-            return true;
-        return false;
+        return percent50();
     }
 
     // 얘도 50퍼 확률로 true 반환
     public boolean shouldSelfDestruct() {
-        return shouldSwapCannonTarget();
+        return percent50();
+    }
+
+    private boolean percent50() {
+        if (randomizer.nextInt(100) < 50)
+            return true;
+        return false;
     }
 }

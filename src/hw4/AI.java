@@ -16,14 +16,14 @@ public abstract class AI {
     // 그 외에는 전부 return false
     public boolean swapCannonTarget(Coordinates newCoords) {
         if (!destructed && !newCoords.equals(cannonTarget)) {
-            cannonTarget = (shouldSwapCannonTarget()) ? newCoords : cannonTarget;
-            return true;
+            if (shouldSwapCannonTarget()) {
+                cannonTarget = newCoords;
+                return true;
+            }
         } else if (shouldSelfDestruct()) {
             selfDestruct();
-            return false;
-        } else {
-            return false;
         }
+        return false;
     }
 
     public abstract boolean shouldSwapCannonTarget();
