@@ -1,18 +1,32 @@
 package hw5;
 
-import java.lang.IllegalAccessException;
-
 public class MyList<E> implements List<E> {
 
-    private E[] elements;
-    private int size = 0;
+    private final Object[] EMPTY_ELEMENT = {};
+
+    private Object[] elements;
+    private int size;
 
     MyList() {
-        elements = (E[]) new Object[INITIAL_CAPACITY];
+        this(INITIAL_CAPACITY);
     }
 
     MyList(int capacity) {
-        elements = (E[]) new Object[capacity];
+        if (capacity > 0) {
+            elements = new Object[capacity];
+        } else if (capacity == 0) {
+            elements = EMPTY_ELEMENT;
+        } else {
+            throw new IllegalArgumentException("Illegal Capacity: " + capacity);
+        }
+    }
+
+    private Object[] grow() {
+        Object[] newElements = new Object[elements.length * 2];
+        for (int i = 0; i < elements.length; i++) {
+            newElements[i] = elements[i];
+        }
+        return newElements;
     }
 
     /**
@@ -24,20 +38,11 @@ public class MyList<E> implements List<E> {
      */
     @Override
     public void add(E e) {
-        // TODO Auto-generated method stub
-        if (e == null) {
-            new IllegalAccessException();
-        } else {
-            if (elements.length <= size) {
-                E[] temp = (E[]) new Object[elements.length * 2];
-                for (int i = 0; i < elements.length; i++) {
-                    temp[i] = elements[i];
-                }
-                elements = temp;
-            }
-            elements[size] = e;
-            size++;
+        if (elements.length == size) {
+            elements = grow();
         }
+        elements[size] = e;
+        size++;
     }
 
     /**
@@ -48,11 +53,12 @@ public class MyList<E> implements List<E> {
      *
      */
     @Override
+    @SuppressWarnings("unchecked")
     public E get(int index) {
         if (index < 0 || index > size) {
-            new IndexOutOfBoundsException();
+            throw new IllegalArgumentException("List range out");
         }
-        return elements[index];
+        return (E) elements[index];
     }
 
     /**
